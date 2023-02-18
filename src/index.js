@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename='lesson-4'>
         <App />
       </BrowserRouter>
     </Provider>
