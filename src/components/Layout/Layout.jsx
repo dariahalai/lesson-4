@@ -1,11 +1,13 @@
 import Navigation from 'components/Navigation/Navigation';
-import { Outlet } from 'react-router-dom';
+
+import { Outlet, useParams } from 'react-router-dom';
 
 const Layout = () => {
+const {userId} = useParams()
   return (
     <>
       <header>
-        <Navigation />
+        {!userId && <Navigation />}
       </header>
       <main>
         <Outlet />

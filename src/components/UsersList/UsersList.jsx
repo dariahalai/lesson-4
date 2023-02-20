@@ -1,27 +1,31 @@
-import { Button } from 'components/Button/Button';
+
 import { useSelector } from 'react-redux';
 import { selectUsers } from 'redux/users/users.selector';
-import { Modal } from 'components/Modal/Modal';
-import { useState } from 'react';
+
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Button } from 'components/Button/Button';
 
 export const UsersList = () => {
-  const [userId, setUserId] = useState('');
+const navigate = useNavigate();
   const users = useSelector(selectUsers);
+  const location = useLocation()
 
-  const closeModal = () => {
-    setUserId('');
-  };
+  const handleAddUser =()=>{
+    navigate('add')
+  }
+
   return (
     <>
       <ul>
         {users.map(({ name, email, id }) => (
           <li key={id}>
-            Name:{name} Email:{email}
-            <Button text="Delete" clickHandler={()=>setUserId(id)} />
+            <Link to={id} state={{from:location}}>{name}</Link>
+             {/* Email:{email} */}
+           
           </li>
         ))}
       </ul>
-      {userId && <Modal id={userId} closeModal={closeModal}/>}
+      <Button text={'add user'} clickHandler ={()=>handleAddUser()}/>
     </>
   );
 };
